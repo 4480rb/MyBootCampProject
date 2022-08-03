@@ -1,0 +1,104 @@
+POST http://localhost:8000/users HTTP/1.1
+content-type: application/json
+
+
+{
+"fullName":"rivki",
+"userName": "aa",
+"password":"123"
+}
+###
+GET http://localhost:8000/users HTTP/1.1
+###
+GET https://localhost:8000/users/aa/123 HTTP/1.1
+###
+
+DELETE http://localhost:8000/users/62d5291e101d68562853899a HTTP/1.1
+###
+PUT http://localhost:8000/users/62d5333dbad32fc00f89581a HTTP/1.1
+content-type: application/json
+
+{
+"fullName":"rivki",
+"userName": "aba",
+"password":"123"
+}
+###
+GET http://localhost:8000/movies HTTP/1.1
+###
+GET http://localhost:8000/movies/62d57214bcfb257eddb72a11 HTTP/1.1
+###
+GET http://localhost:8000/other/The 100 HTTP/1.1
+###
+POST http://localhost:8000/movies HTTP/1.1
+content-type: application/json
+
+
+{
+    "name":"hello",
+    "yearPremiered":"2014-09-21",
+    "genres":["drama","roman"],
+    
+    "imageUrl":"https://itga.org.il/wp-content/uploads/2020/07/2551.png"
+}
+###
+DELETE  http://localhost:8000/movies/62d57214bcfb257eddb729d7 HTTP/1.1
+###
+PUT http://localhost:8000/movies/62d5ba86324409d30b2036db HTTP/1.1
+content-type: application/json
+
+{
+    "name":"helloAba",
+    "yearPremiered":"2014-09-21",
+    "genres":["drama","roman"],
+    
+    "imageUrl":"https://itga.org.il/wp-content/uploads/2020/07/2551.png"
+}
+###
+GET http://localhost:8000/members HTTP/1.1
+###
+GET http://localhost:8000/members/62dc516f74e8ba3ab09e7d55 HTTP/1.1
+###
+DELETE  http://localhost:8000/members/62dc516f74e8ba3ab09e7d4f HTTP/1.1
+###
+POST http://localhost:8000/members HTTP/1.1
+content-type: application/json
+
+{
+    "email":"db123@gmail.com",
+    "city":"Tel-Aviv"
+}
+###
+PUT http://localhost:8000/members/62d586f49c256620f57b7a56 HTTP/1.1
+content-type: application/json
+
+{
+    "name":"helloAba",
+    "yearPremiered":"2014-09-21",
+    "genres":["drama","roman"],
+    
+    "imageUrl":"https://itga.org.il/wp-content/uploads/2020/07/2551.png"
+}
+###
+POST http://localhost:8000/subscriptionses HTTP/1.1
+content-type: application/json
+
+{
+    "movieID":"62d57214bcfb257eddb729d7",
+    "memberID":"62dc516f74e8ba3ab09e7d56",
+    "date":"2009-06-24"
+}
+###
+GET http://localhost:8000/subscriptionses HTTP/1.1
+###
+GET http://localhost:8000/subscriptionses/62d57214bcfb257eddb729d7 HTTP/1.1
+###
+DELETE  http://localhost:8000/subscriptionses/   HTTP/1.1
+###
+POST http://localhost:8000/authintications HTTP/1.1
+content-type: application/json
+
+{
+    "userName":"aa",
+    "password":"123"
+}
