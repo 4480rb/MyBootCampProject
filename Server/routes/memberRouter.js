@@ -4,7 +4,7 @@ const memberBL = require('../BL/memberBL')
 const getMembers = async (req, res, next) => {
     const members = await memberBL.getAllMembers()
     if (members.length > 0) {
-        console.log('Already have Users');
+       // console.log('Already have Users');
         next()
     }
     else {
@@ -36,7 +36,6 @@ router.post("/", async function (req, res) {
     const member = req.body
      try {
          const status = await memberBL.addMember(member)
-         console.log(status)
          res.status(200).json({ msg: status })
      } catch (err) {
          res.status(500).json({ msg: err })

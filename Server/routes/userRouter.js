@@ -50,7 +50,6 @@ router.delete("/:id",async function(req,res){
     const id=req.params.id
     try{
         const status = await userBL.deleteUserById(id)
-        console.log(status)
     }
     catch (err) {
         res.status(500).json({ msg: err })

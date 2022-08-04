@@ -4,7 +4,7 @@ const ObjectId = mongoose.Types.ObjectId
 const jFaile = require("jsonfile")
 const path = require("path")
 const movieModel = require('../models/movieModel')
-const subscriptionsBL=require('../BL/subscriptionsBL')
+const subscriptionsBL = require('../BL/subscriptionsBL')
 
 const jsonFaile = path.join(__dirname, '../shows.json')
 const getAllMoviesFromJson = () => {
@@ -104,11 +104,11 @@ const updateMovie = (id, obj) => {
 const deleteMovieById = (id) => {
     return new Promise((resolve, reject) => {
         movieModel.findOneAndDelete({ _id: ObjectId(id) }, (err) => {
-        
+
             if (err) {
                 reject(err)
             } else {
-                subscriptionsBL.deleteSubscriptions(id)
+                subscriptionsBL.deleteSubscriptionsByMovieId(id)
                 resolve("Movie deleted👌")
 
             }
@@ -120,4 +120,4 @@ const deleteMovieById = (id) => {
 }
 
 
-module.exports = { getAllMoviesFromJson, getAllMovies,getMovieByName, getMovieById, addMovie, addMovies, updateMovie, deleteMovieById }
+module.exports = { getAllMoviesFromJson, getAllMovies, getMovieByName, getMovieById, addMovie, addMovies, updateMovie, deleteMovieById }

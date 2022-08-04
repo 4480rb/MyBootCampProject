@@ -18,34 +18,30 @@ export default function MovieComp(props) {
     }
 
     const getSubs = async () => {
-        const arr = [];
         let { data } = await axios.get(`http://localhost:8000/subscriptionses/${props.movie._id}`)
-        data.map(async sub => {
-            const { data } = await axios.get(`http://localhost:8000/members/${sub.memberID}`)
-            const obj = { "name": data.name, "date": sub.date }
-            arr.push(obj);
-        })
-        setWatched(arr)
+        const subToShow = await Promise.all(data.map(sub => getFinalSub(sub)))
+        setWatched(subToShow)
+    }
 
-    };
+    const getFinalSub = async (sub) => {
+        const { data } = await axios.get(`http://localhost:8000/members/${sub.memberID}`)
+        return { "name": data.name, "date": sub.date }
+    }
     useEffect(() => {
         getSubs()
-    }, [])
+    }, [watched])
 
-    function deleteMovie() {
 
-    }
     let genres = props.movie.genres;
-    return <div style={{ border: "3px solid black" }}>
-        
+    return <div style={{ border: "4px solid black" }}>
+
         <h3>{`${props.movie.name} , ${props.movie.yearPremiered}`}</h3>
         Genres: {genres && `"${genres[0]}", "${genres[1]}", "${genres[2]}"`}
         <br />
         {/* <img src={props.movie.imageUrl} width="50px" height="100px" alt=""></img><br /> */}
 
-        <button name={props.movie.name} onClick={editMovie}>Edit</button>
-        <button onClick={deleteMovie}>Delete</button>
-        {console.log(watched.length)}
-       < WhatchedComp watched={watched}/>
+       <button name={props.movie.name} onClick={editMovie}  hidden={props.find}>Edit</button>
+        <button onClick={() => props.callback(props.movie)} hidden={props.find}>Delete</button>
+       {!props.find&& < WhatchedComp watched={watched} />}
     </div>
 }

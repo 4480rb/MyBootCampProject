@@ -21,6 +21,17 @@ const getSubscriptionsByMovieId = (movieID) => {
         })
     })
 };
+const getSubscriptionsByMemberId = (memberID) => {
+    return new Promise((resolve, reject) => {
+       subscriptionsModel.find({ memberID:ObjectId(memberID)}, (err, data) => {
+            if (err) {
+                reject(err)
+            } else {
+                resolve(data)
+            }
+        })
+    })
+};
 const addsubscriptions = (subscriptions) => {
     return new Promise((resolve, reject) => {
         let subscriptionsModelToDb = new subscriptionsModel(subscriptions)
@@ -47,7 +58,7 @@ const updateSubscriptions = (id, obj) => {
     })
 };
 
-const deleteSubscriptions = (movieID) => {
+const deleteSubscriptionsByMovieId = (movieID) => {
     return new Promise((resolve, reject) => {
 
         subscriptionsModel.deleteMany({ "movieID": movieID}, (err) => {
@@ -63,6 +74,22 @@ const deleteSubscriptions = (movieID) => {
 
     })
 }
+const deleteSubscriptionsByMemberId = (memberID) => {
+    return new Promise((resolve, reject) => {
+
+        subscriptionsModel.deleteMany({ "memberID": memberID}, (err) => {
+              if (err) {
+                reject(err)
+            } else {
+                resolve("Subscription deleted👌")
+
+            }
+
+        })
+
+
+    })
+}
 
    
-module.exports = { getAllsubscriptions, getSubscriptionsByMovieId, addsubscriptions, updateSubscriptions, deleteSubscriptions }
+module.exports = { getAllsubscriptions, getSubscriptionsByMovieId,getSubscriptionsByMemberId, addsubscriptions, updateSubscriptions, deleteSubscriptionsByMovieId,deleteSubscriptionsByMemberId }

@@ -28,7 +28,7 @@ GET http://localhost:8000/movies HTTP/1.1
 ###
 GET http://localhost:8000/movies/62d57214bcfb257eddb72a11 HTTP/1.1
 ###
-GET http://localhost:8000/other/The 100 HTTP/1.1
+GET http://localhost:8000/other/Hellsing HTTP/1.1
 ###
 POST http://localhost:8000/movies HTTP/1.1
 content-type: application/json
@@ -57,9 +57,9 @@ content-type: application/json
 ###
 GET http://localhost:8000/members HTTP/1.1
 ###
-GET http://localhost:8000/members/62dc516f74e8ba3ab09e7d55 HTTP/1.1
+GET http://localhost:8000/members/62e2d6e0d513bc18f36ad69d HTTP/1.1
 ###
-DELETE  http://localhost:8000/members/62dc516f74e8ba3ab09e7d4f HTTP/1.1
+DELETE  http://localhost:8000/members/62e2d6e0d513bc18f36ad69d HTTP/1.1
 ###
 POST http://localhost:8000/members HTTP/1.1
 content-type: application/json

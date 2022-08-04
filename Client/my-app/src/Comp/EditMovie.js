@@ -19,7 +19,6 @@ export default function EditMovieComp() {
     }
     const updateMovie = async () => {
         let { data } = await axios.put(`http://localhost:8000/movies/${movie._id}`, movie)
-        console.log(data);
         alert("the movie update")
     }
     let navigate = useNavigate()

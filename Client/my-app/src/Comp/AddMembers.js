@@ -11,7 +11,6 @@ export default function AddMemberComp() {
         if (newMember) {
             let { data } = await axios.post("http://localhost:8000/members", newMember)
             alert(data.msg)
-            console.log(data);
         }
         else {
             alert('Put details to add a user')

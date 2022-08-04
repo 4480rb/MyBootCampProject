@@ -10,59 +10,33 @@ export default function MoviesWatchedComp(props) {
     const getmovies = async () => {
         let { data } = await axios.get(`http://localhost:8000/subscriptionses `)
         let filterSub = data.filter(s => s.memberID === props.id)
-         let arr=[]
-        filterSub.forEach(async s => {
-            let {data} = await axios.get(`http://localhost:8000/movies/${s.movieID}`)
-            console.log(data);
-            let obj = { "name": data.name, "yearPremiered": s.date }
-            console.log(obj);
-            arr.push(obj)
-
-        })
-        setSubs(arr)
-
+        const movieToShow = await Promise.all(filterSub.map(mv => getFinalMovie(mv)))
+        setSubs(movieToShow)
     }
-    // const getmovies = () => {
-    //     return new Promise((resolve) => {
-    //         let { data } = axios.get(`http://localhost:8000/subscriptionses`)
-    //         let filterSub = data.filter(s => s.memberID === props.id)
-    //         let arr = []
-    //         filterSub.forEach(s => {
-    //             let { data } = axios.get(`http://localhost:8000/movies/${s.movieID}`)
-    //             console.log(data);
-    //             let obj = { "name": data.name, "yearPremiered": s.date }
-    //             console.log(obj);
-    //             arr.push(obj)
-    //         })
-    //         //setSubs(arr)
-    //         resolve(arr)
-    //     })
-
-    // }
+    const getFinalMovie = async (mv) => {
+        const { data } = await axios.get(`http://localhost:8000/movies/${mv.movieID}`)
+        return { "name": data.name, "yearPremiered": mv.date }
+    }
 
     useEffect(() => {
-      //const getM =async()=> {
-       //let resp=  await 
-       getmovies()
-     //  setSubs(resp)
-      
-      //getM()
-       
-    }, []);
-    return <div>
+        getmovies()
+    }, [subs])
+
+    return <div style={{border:"solid 4px pink "}}>
         Movies Whatched<br />
-        <button onClick={e => setSubscribe(!isSubscribe)}>Subscribe to a new Movie</button>
-        {isSubscribe && <AddSubscribeComp movies={props.movies} id={props.id} subs={subs} />}
 
         {
             subs.map((movie, index) => {
-                return <div key={index}><Link to={"/menu/moviepage"} state={{ movie: movie }}>{movie.name}</Link>,
+                return <div key={index}><Link to={"/menu/moviepage/allmovies"} state={{ movie: movie }}>{movie.name}</Link>,
                     <span>{movie.yearPremiered}</span>
 
 
 
                 </div>
             })}
+        <button onClick={e => setSubscribe(!isSubscribe)}>Subscribe to a new Movie</button>
+        {isSubscribe && <AddSubscribeComp id={props.id} subs={subs} callback={(newSubscribe) => setSubs([...subs, newSubscribe])} />}
+
 
 
     </div>

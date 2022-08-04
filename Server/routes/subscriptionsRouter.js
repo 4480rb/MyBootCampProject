@@ -29,7 +29,6 @@ router.post("/", async function (req, res) {
    const subscriptions = req.body
     try {
         const status = await subscriptionsBL.addsubscriptions(subscriptions)
-        console.log(status)
         res.status(200).json({ msg: status })
     } catch (err) {
         res.status(500).json({ msg: err })
@@ -46,14 +45,5 @@ router.put('/:id',async function(req,res){
         res.status(500).json({ msg: err })
     }
  })
-router.delete("/:id",async function(req,res){
-    const id=req.params.id
-    try{
-        const status = await subscriptionsBL.deleteSubscriptionsByMovieId(id)
-        console.log(status)
-    }
-    catch (err) {
-        res.status(500).json({ msg: err })
-    }
-})
+
 module.exports = router

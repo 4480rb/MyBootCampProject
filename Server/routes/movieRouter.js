@@ -5,7 +5,7 @@ const movieBl=require('../BL/movieBL')
 const getMovies = async (req, res, next) => {
     const movies = await movieBl.getAllMovies()
     if (movies.length > 0) {
-        console.log('Already have movies');
+       // console.log('Already have movies');
         next()
     }
     else {
@@ -50,7 +50,6 @@ router.post("/", async function (req, res) {
    const movie = req.body
     try {
         const status = await movieBl.addMovie(movie)
-        console.log(status)
         res.status(200).json({ msg: status })
     } catch (err) {
         res.status(500).json({ msg: err })

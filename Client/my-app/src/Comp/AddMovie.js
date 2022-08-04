@@ -10,7 +10,7 @@ export default function AddMovieComp() {
     const saveToDB = async () => {
         let { data } = await axios.post("http://localhost:8000/movies", newMovie)
         console.log(data);
-
+        alert(data.msg)
     }
      let navigate=useNavigate()
     function bakeMovies() {
@@ -22,8 +22,8 @@ export default function AddMovieComp() {
         <br />
         Name: <input name="name" type="text" onChange={handlerInput} /><br />
         Genres: <input name="genres" type="text" onChange={handlerInput} /><br />
-        ImageUrl: <input name="yearPremiered" type="text" onChange={handlerInput} /><br />
-        Premiered: <input name="imageUrl" type="date" onChange={handlerInput} /><br />
+        ImageUrl: <input name="imageUrl" type="text" onChange={handlerInput} /><br />
+        Premiered: <input name="yearPremiered" type="date" onChange={handlerInput} /><br />
         <button onClick={saveToDB}>Save</button>
         <button onClick={bakeMovies}>Cancel</button>
     </div>

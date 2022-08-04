@@ -14,6 +14,7 @@ export default function MemberComp(props) {
         dispatch({ type: "EDIT-MEMBER", payload: true })
         navigate(-1)
     }
+
     return <div style={{ border: "3px solid black" }}>
         <p> {props.member.name}<br />
             {props.member.email}<br />
@@ -21,8 +22,8 @@ export default function MemberComp(props) {
 
 
         <button name={props.member._id} onClick={editMember}>Edit</button>
-        <button >Delete</button><br />
-        <MoviesWatchedComp movies={props.movies} id={props.member._id} />
+        <button  onClick={()=>props.callback(props.member)}>Delete</button><br />
+        <MoviesWatchedComp id={props.member._id} />
 
 
     </div>

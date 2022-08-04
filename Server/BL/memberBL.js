@@ -2,9 +2,9 @@ const memberModel = require('../models/memberModel')
 const axios = require('axios')
 const mongoose = require('mongoose')
 const ObjectId = mongoose.Types.ObjectId
+const subscriptionsBL=require('../BL/subscriptionsBL')
 async function getDataToDB() {
     const { data } = await axios.get('https://jsonplaceholder.typicode.com/users')
-    console.log(data);
     data.forEach(member => {
         return new Promise((resolve, reject) => {
             let memberToDB = new memberModel({
@@ -72,13 +72,24 @@ const updateMember = (id, obj) => {
         })
     })
 };
-const deleteMemberById = async (id) => {
-    try {
-        await memberModel.findByIdAndDelete(id)
-        console.log("memberDeleted");
-    }
-    catch (err) {
-        console.log(err);
-    }
+
+
+const deleteMemberById = (id) => {
+    return new Promise((resolve, reject) => {
+        memberModel.findOneAndDelete({ _id: ObjectId(id) }, (err) => {
+        
+            if (err) {
+                reject(err)
+            } else {
+                subscriptionsBL.deleteSubscriptionsByMemberId(id)
+                resolve("Member deleted👌")
+
+            }
+
+        })
+
+
+    })
 }
+
 module.exports = { getDataToDB, getAllMembers, getMemberById, addMember, updateMember, deleteMemberById }

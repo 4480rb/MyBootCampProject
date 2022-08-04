@@ -7,7 +7,6 @@ export default function EditMemberComp(){
     const [member, setMember] = useState({})
     const getMember = async () => {
         let { data } = await axios.get(`http://localhost:8000/members/${sessionStorage.getItem("id")}`)
-        console.log(data);
         setMember(data)
     }
     useEffect(() => {
@@ -20,7 +19,6 @@ export default function EditMemberComp(){
     }
     const updateMember = async () => {
         let { data } = await axios.put(`http://localhost:8000/members/${member._id}`, member)
-        console.log(data);
         alert("the member update")
     }
     let navigate = useNavigate()

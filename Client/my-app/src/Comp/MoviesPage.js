@@ -4,12 +4,9 @@ import axios from "axios"
 import MovieComp from "./ShowMovie"
 import EditMovieComp from './EditMovie'
 import { useSelector } from "react-redux"
-import { useLocation } from "react-router";
 export default function MoviesPageComp() {
 
-    const location = useLocation()
     const storeData = useSelector(state => state)
-    console.log(storeData);
     const navigate = useNavigate()
     const [find, setFind] = useState("")
     const [afterFind, setAfterFind] = useState({})
@@ -18,18 +15,11 @@ export default function MoviesPageComp() {
         navigate(e.target.name)
     }
     async function findMovie() {
-        if (location.state != null) {
-            { setFind([location.state.movie.name]) }
-            let { data } = await axios.get(`http://localhost:8000/other/${find}`)
-            setAfterFind(data)
-        }
-        else {
-            let { data } = await axios.get(`http://localhost:8000/other/${find}`)
+        let { data } = await axios.get(`http://localhost:8000/other/${find}`)
+        
+        setAfterFind(data)
 
-            setAfterFind(data)
-        }
     }
-
 
     return <div>
         <h3>Movies</h3>
@@ -41,7 +31,7 @@ export default function MoviesPageComp() {
             <input type="text" onChange={e => setFind(e.target.value)} hidden={(storeData.movie)}></input>
             <button onClick={findMovie} hidden={(storeData.movie)}>Find</button>
 
-            {find && < MovieComp movie={afterFind} />}
+            {find && < MovieComp movie={afterFind} find={true} />}
             {storeData.movie && <EditMovieComp />}
             <Outlet />
         </nav>
