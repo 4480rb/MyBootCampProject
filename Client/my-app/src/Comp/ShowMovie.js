@@ -38,7 +38,7 @@ export default function MovieComp(props) {
         <h3>{`${props.movie.name} , ${props.movie.yearPremiered}`}</h3>
         Genres: {genres && `"${genres[0]}", "${genres[1]}", "${genres[2]}"`}
         <br />
-        {/* <img src={props.movie.imageUrl} width="50px" height="100px" alt=""></img><br /> */}
+        <img src={props.movie.imageUrl} width="50px" height="100px" alt=""></img><br />
 
        <button name={props.movie.name} onClick={editMovie}  hidden={props.find}>Edit</button>
         <button onClick={() => props.callback(props.movie)} hidden={props.find}>Delete</button>
