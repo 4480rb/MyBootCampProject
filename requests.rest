@@ -26,9 +26,9 @@ content-type: application/json
 ###
 GET http://localhost:8000/movies HTTP/1.1
 ###
-GET http://localhost:8000/movies/62d57214bcfb257eddb72a11 HTTP/1.1
+GET http://localhost:8000/movies/z/62d57214bcfb257eddb729d4 HTTP/1.1
 ###
-GET http://localhost:8000/other/Hellsing HTTP/1.1
+GET http://localhost:8000/movies/y/Penny Dreadful HTTP/1.1
 ###
 POST http://localhost:8000/movies HTTP/1.1
 content-type: application/json
@@ -102,3 +102,5 @@ content-type: application/json
     "userName":"aa",
     "password":"123"
 }
+###
+GET http://localhost:8000/subscriptionses/memberID/62dc516f74e8ba3ab09e7d4e HTTP/1.1

@@ -11,15 +11,13 @@ const movieRouter = require('./routes/movieRouter');
 const memberRouter = require('./routes/memberRouter');
 const subscriptionsRouter = require('./routes/subscriptionsRouter');
 const authinticationRouter = require('./routes/authinticationRouter');
-const otherRouter = require('./routes/otherRouter');
-const filterRouter=require('./routes/filterRouter')
+
 app.use("/users",userRouter)
 app.use("/movies",movieRouter)
 app.use("/members",memberRouter)
 app.use("/subscriptionses",subscriptionsRouter)
 app.use("/authintications",authinticationRouter)
-app.use("/other",otherRouter)
-app.use("/filter",filterRouter)
+
 
 const port=8000;
 app.listen(port,()=>{

@@ -5,8 +5,7 @@ import { useNavigate } from "react-router";
 export default function EditMovieComp() {
     const [movie, setMovie] = useState({})
     const getMovie = async () => {
-        let { data } = await axios.get(`http://localhost:8000/other/${sessionStorage.getItem("name")}`)
-        console.log(data);
+        let { data } = await axios.get(`http://localhost:8000/movies/y/${sessionStorage.getItem("name")}`)
         setMovie(data)
     }
     useEffect(() => {
@@ -18,7 +17,7 @@ export default function EditMovieComp() {
         setMovie({ ...movie, [e.target.name]: e.target.value })
     }
     const updateMovie = async () => {
-        let { data } = await axios.put(`http://localhost:8000/movies/${movie._id}`, movie)
+        let { data } = await axios.put(`http://localhost:8000/movies/z/${movie._id}`, movie)
         alert("the movie update")
     }
     let navigate = useNavigate()

@@ -14,7 +14,7 @@ export default function MoviesWatchedComp(props) {
         setSubs(movieToShow)
     }
     const getFinalMovie = async (mv) => {
-        const { data } = await axios.get(`http://localhost:8000/movies/${mv.movieID}`)
+        const { data } = await axios.get(`http://localhost:8000/movies/z/${mv.movieID}`)
         return { "name": data.name, "yearPremiered": mv.date }
     }
 

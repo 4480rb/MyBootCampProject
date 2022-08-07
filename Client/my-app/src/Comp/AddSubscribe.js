@@ -12,7 +12,7 @@ export default function AddSubscribeComp(props) {
 
   }
   const moviesToSubscribe = async () => {
-    let { data } = await axios.get(`http://localhost:8000/filter/${props.id}`)
+    let { data } = await axios.get(`http://localhost:8000/subscriptionses/x/${props.id}`)
     setMovies(data)
   
 

@@ -31,16 +31,30 @@ router.get("/",async function (req, res) {
       return  res.status(500).json({ msg: err })
     }
 })
-router.get("/:id", async function (req, res) {
-    const id=req.params.id
+router.get("/:type/:x", async function (req, res) {
+    const type=req.params.type
+    const x=req.params.x
+    if (type==`y`)
+    {
+        try {
+            const movie = await movieBl.getMovieBy("name",x)
+             return res.status(200).json(movie)
+          }
+          catch (err) {
+            return  res.status(500).json({ msg: err })
+          }
+    }
+    else{
+        try {
+            const movie = await movieBl.getMovieBy("_id",x)
+             return res.status(200).json(movie)
+          }
+          catch (err) {
+            return  res.status(500).json({ msg: err })
+          }
+    }
     
-    try {
-      const movie = await movieBl.getMovieById(id)
-       return res.status(200).json(movie)
-    }
-    catch (err) {
-      return  res.status(500).json({ msg: err })
-    }
+    
 })
 
 

@@ -15,7 +15,7 @@ export default function MoviesPageComp() {
         navigate(e.target.name)
     }
     async function findMovie() {
-        let { data } = await axios.get(`http://localhost:8000/other/${find}`)
+        let { data } = await axios.get(`http://localhost:8000/movies/y/${find}`)
         
         setAfterFind(data)
 

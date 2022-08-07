@@ -7,10 +7,8 @@ export default function AllMoviesComp() {
     let location = useLocation()
     const getMovies = async () => {
         if (location.state !== null) {
-            console.log(location.state.movie);
-            let { data } = await axios.get(`http://localhost:8000/other/${location.state.movie.name}`)
-            console.log(data);
-            setMovies([data])
+           let { data } = await axios.get(`http://localhost:8000/movies/y/${location.state.movie.name}`)
+           setMovies([data])
         }
         else {
             let { data } = await axios.get(`http://localhost:8000/movies`)
@@ -24,7 +22,7 @@ export default function AllMoviesComp() {
     }, [movies]);
 
     const filterMovies = async (movie) => {
-        let { data } = await axios.delete(`http://localhost:8000/movies/${movie._id}`)
+        let { data } = await axios.delete(`http://localhost:8000/movies/z/${movie._id}`)
         if (data === "Movie deleted👌") {
             const temp = movies.filter(mv => mv._id !== movie._id)
             setMovies([...temp])

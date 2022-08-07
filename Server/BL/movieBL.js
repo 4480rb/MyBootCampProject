@@ -30,9 +30,10 @@ const getAllMovies = async () => {
         console.log(err);
     }
 }
-const getMovieById = async (id) => {
+const getMovieBy=async(type,x)=>{
+    
     try {
-        let movie = await movieModel.findOne({ _id: id })
+        let movie = await movieModel.findOne({[type]:x})
         return movie;
 
     }
@@ -40,16 +41,27 @@ const getMovieById = async (id) => {
         console.log(err);
     }
 }
-const getMovieByName = async (name) => {
-    try {
-        let movie = await movieModel.findOne({ name: name })
-        return movie;
 
-    }
-    catch (err) {
-        console.log(err);
-    }
-}
+// const getMovieById = async (id) => {
+//     try {
+//         let movie = await movieModel.findOne({ _id: id })
+//         return movie;
+
+//     }
+//     catch (err) {
+//         console.log(err);
+//     }
+// }
+// const getMovieByName = async (name) => {
+//     try {
+//         let movie = await movieModel.findOne({ name: name })
+//         return movie;
+
+//     }
+//     catch (err) {
+//         console.log(err);
+//     }
+// }
 const addMovie = (movie) => {
     return new Promise((resolve, reject) => {
         let movieToDb = new movieModel(movie)
@@ -120,4 +132,4 @@ const deleteMovieById = (id) => {
 }
 
 
-module.exports = { getAllMoviesFromJson, getAllMovies, getMovieByName, getMovieById, addMovie, addMovies, updateMovie, deleteMovieById }
+module.exports = { getAllMoviesFromJson, getAllMovies, getMovieBy, addMovie, addMovies, updateMovie, deleteMovieById }
